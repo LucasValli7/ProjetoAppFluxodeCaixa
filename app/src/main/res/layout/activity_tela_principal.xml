@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".TelaPrincipal">
+
+
+    <View
+        android:id="@+id/Container1"
+       style="@style/ContainerComponents"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/Container2"/>
+    
+    <TextView
+        android:id="@+id/txt_ResumoCaixa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resumo de Caixa"
+        android:textSize="45sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@id/Container1"
+        app:layout_constraintEnd_toEndOf="@id/Container1"
+        app:layout_constraintTop_toTopOf="@id/Container1" />
+
+    <TextView
+        android:id="@+id/txt_entradas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total de Entradas"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        app:layout_constraintStart_toStartOf="@id/Container1"
+        app:layout_constraintTop_toBottomOf="@id/txt_ResumoCaixa"/>
+
+    <TextView
+        android:id="@+id/txt_valorEntradas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="@id/Container1"
+        app:layout_constraintTop_toBottomOf="@id/txt_ResumoCaixa"/>
+
+    <TextView
+        android:id="@+id/txt_saidas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total de Saídas"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        app:layout_constraintStart_toStartOf="@id/Container1"
+        app:layout_constraintTop_toBottomOf="@id/txt_entradas"/>
+
+    <TextView
+        android:id="@+id/txt_valorSaidas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="@id/Container1"
+        app:layout_constraintTop_toBottomOf="@id/txt_valorEntradas"/>
+
+    <TextView
+        android:id="@+id/txt_FimDoMes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fim do Mês"
+        android:textSize="45sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="25dp"
+        app:layout_constraintStart_toStartOf="@id/Container1"
+        app:layout_constraintEnd_toEndOf="@id/Container1"
+        app:layout_constraintTop_toBottomOf="@id/txt_valorSaidas"/>
+
+    <TextView
+        android:id="@+id/txt_ValorFimDoMes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="45sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="@id/Container1"
+        app:layout_constraintEnd_toEndOf="@id/Container1"
+        app:layout_constraintTop_toBottomOf="@id/txt_FimDoMes"/>
+
+    <View
+        android:id="@+id/Container2"
+        style="@style/ContainerComponents"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Container1" />
+
+    <TextView
+        android:id="@+id/txt_porcentagemDeGastos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="% de Gastos"
+        android:textSize="45sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@id/Container2"
+        app:layout_constraintEnd_toEndOf="@id/Container2"
+        app:layout_constraintTop_toTopOf="@id/Container2" />
+
+    <TextView
+        android:id="@+id/txt_Essenciais"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Essenciais"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        app:layout_constraintStart_toStartOf="@id/Container2"
+        app:layout_constraintTop_toBottomOf="@id/txt_porcentagemDeGastos"/>
+
+    <TextView
+        android:id="@+id/txt_ValorEssenciais"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="50%"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="@id/Container2"
+        app:layout_constraintTop_toBottomOf="@id/txt_porcentagemDeGastos"/>
+
+    <TextView
+        android:id="@+id/txt_DesejosPessoais"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Desejos Pessoais"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        app:layout_constraintStart_toStartOf="@id/Container2"
+        app:layout_constraintTop_toBottomOf="@id/txt_Essenciais"/>
+
+    <TextView
+        android:id="@+id/txt_ValorDesejosPessoais"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="30%"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="@id/Container2"
+        app:layout_constraintTop_toBottomOf="@id/txt_ValorEssenciais"/>
+
+    <TextView
+        android:id="@+id/txt_PagamentoDeDividas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pagamento de Dívidas"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        app:layout_constraintStart_toStartOf="@id/Container2"
+        app:layout_constraintTop_toBottomOf="@id/txt_DesejosPessoais"/>
+
+    <TextView
+        android:id="@+id/txt_ValorPagamentoDeDividas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="20%"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="@id/Container2"
+        app:layout_constraintTop_toBottomOf="@id/txt_ValorDesejosPessoais"/>
+
+    <TextView
+        android:id="@+id/txt_base"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Base de Cálculo"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="@id/Container2"
+        app:layout_constraintEnd_toEndOf="@id/Container2"
+        app:layout_constraintTop_toBottomOf="@id/txt_PagamentoDeDividas"/>
+
+    <TextView
+        android:id="@+id/txt_valorBase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@id/Container2"
+        app:layout_constraintEnd_toEndOf="@id/Container2"
+        app:layout_constraintTop_toBottomOf="@id/txt_base"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

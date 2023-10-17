@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".PerfilUsuario">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        app:title="Perfil"
+        app:titleTextColor="@color/white"
+        app:navigationIcon="@drawable/ic_icon_back"
+        tools:ignore="MissingConstraints" />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circle_usuarioPerfil"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:src="@drawable/baseline_test"
+        android:backgroundTint="@color/black"
+        android:layout_margin="20dp"/>
+
+    <TextView
+        android:id="@+id/nomeUsuarioPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:text="Lucas Valli Azevedo"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:inputType="textCapWords"
+        />
+
+    <TextView
+        android:id="@+id/emailUsuarioPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="lucasvalliazevedo@gmail.com"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:layout_gravity="center"
+        />
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="EDITAR PERFIL"
+        android:textStyle="bold"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/edit_txt_shape"/>
+
+
+
+
+
+
+
+</LinearLayout>

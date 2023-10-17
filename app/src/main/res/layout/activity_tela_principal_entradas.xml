@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fillViewport="true">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".TelaPrincipalEntradas">
+
+    <LinearLayout
+        android:id="@+id/LinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/tolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/txt_teste"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="35sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        app:title="Entradas de Caixa"
+        app:titleTextColor="@color/white"
+        app:navigationIcon="@drawable/ic_icon_back"
+        tools:ignore="MissingConstraints" />
+
+
+    <TextView
+        android:id="@+id/txtTipoDeEntrada"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="Tipo de Entrada"
+        android:textColor="@color/blacl_ligth"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/LinearLayout" />
+
+    <TextView
+        android:id="@+id/txt_ValorEntrada"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="Total de Entrada"
+        android:textColor="@color/blacl_ligth"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/LinearLayout" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ListaTipoEntrada"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtTipoDeEntrada" />
+
+    <Button
+        android:id="@+id/btn_addEntrada"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nova Entrada"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:background="@drawable/edit_txt_shape"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/TotaldeEntradas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="Total de Entradas"
+        android:textSize="20sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintEnd_toStartOf="@id/ValorTotalEntradas"
+        app:layout_constraintBottom_toTopOf="@id/btn_addEntrada"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/ValorTotalEntradas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text=""
+        android:textSize="20sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_addEntrada"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

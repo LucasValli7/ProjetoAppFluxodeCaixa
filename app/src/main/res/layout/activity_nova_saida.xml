@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".NovaSaida">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        app:title="Nova Saída"
+        app:titleTextColor="@color/white"
+        app:navigationIcon="@drawable/ic_icon_back"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/txt_NovaSaida"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Tipo de Saída"
+        android:textColor="@color/black"
+        android:padding="12dp"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toBottomOf="@id/add_data"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/edit_novaSaida"
+        />
+
+    <EditText
+        android:id="@+id/edit_novaSaida"
+        android:layout_width="250dp"
+        android:layout_height="48dp"
+        android:hint="Ex: Supermercado"
+        android:textColor="@color/blacl_ligth"
+        android:layout_marginTop="50dp"
+        android:maxLines="1"
+        android:gravity="start"
+        android:textStyle="bold"
+        android:inputType="textCapWords"
+        app:layout_constraintTop_toBottomOf="@id/add_data"
+        app:layout_constraintStart_toEndOf="@id/txt_NovaSaida"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_NovoValor"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:padding="13dp"
+        android:text="Valor de Saída"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/edit_novaSaida"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_NovaSaida" />
+
+    <EditText
+        android:id="@+id/edit_novoValor"
+        android:layout_width="250dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:gravity="start"
+        android:hint="Ex: R$1.500,00  "
+        android:maxLines="1"
+        android:inputType="numberDecimal"
+        android:digits="0123456789."
+        android:textColor="@color/blacl_ligth"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/txt_NovaSaida"
+        app:layout_constraintTop_toBottomOf="@id/edit_novaSaida" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_salvar"
+        android:contentDescription="TODO" />
+
+
+    <TextView
+        android:id="@+id/add_data"
+        android:layout_width="250dp"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:hint="00/00/0000"
+        android:maxLines="1"
+        android:textColor="@color/blacl_ligth"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:drawableLeft="@drawable/ic_calendar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tolbar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

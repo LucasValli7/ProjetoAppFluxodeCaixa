@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PerfilHistoricos">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        app:title="Histórico"
+        app:titleTextColor="@color/white"
+        app:navigationIcon="@drawable/ic_icon_back"
+        tools:ignore="MissingConstraints" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="165dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="Mês"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tolbar">
+
+        <AutoCompleteTextView
+            android:id="@+id/auto_complete_text_mes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="janeiro"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout3"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="10dp"
+        android:hint="Ano"
+        app:layout_constraintStart_toEndOf="@id/textInputLayout2"
+        app:layout_constraintTop_toBottomOf="@id/tolbar">
+
+        <AutoCompleteTextView
+            android:id="@+id/auto_complete_text_ano"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="2023"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/btn_pesquisa"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:enabled="false"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="25dp"
+        android:src="@drawable/ic_pesquisa"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tolbar" />
+
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listHistorico"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup1" />
+
+    <TextView
+        android:id="@+id/TotalMovimentacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="Total:"
+        android:textSize="20sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="250dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/ValorTotalMovimentacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text=""
+        android:textSize="20sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroup1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayout2">
+
+        <RadioButton
+            android:id="@+id/checkEntrada"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ENTRADA"
+            android:textStyle="bold"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintTop_toBottomOf="@id/textInputLayout2"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <RadioButton
+            android:id="@+id/checksSaida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="SAÍDA"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/checkEntrada"
+            app:layout_constraintTop_toBottomOf="@id/textInputLayout2" />
+
+    </RadioGroup>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

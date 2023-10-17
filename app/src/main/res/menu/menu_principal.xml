@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        app:showAsAction="always"
+        android:title=""
+        android:icon="@drawable/ic_menu">
+
+        <menu>
+            <item
+            android:id="@+id/perfil"
+            android:title="Perfil"
+            android:icon="@drawable/ic_perfil"
+            app:showAsAction="never"/>
+            <item
+                android:id="@+id/Entradas"
+                android:title="Entradas"
+                android:icon="@drawable/ic_money"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/Saidas"
+                android:title="Saídas"
+                android:icon="@drawable/ic_money"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/historico"
+                android:title="Histórico"
+                android:icon="@drawable/ic_historico"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/logout"
+                android:title="Sair da Sessão"
+                android:icon="@drawable/ic_logout"
+                app:showAsAction="never" />
+
+
+
+
+
+        </menu>
+        </item>
+
+</menu>
