@@ -33,7 +33,6 @@ import java.util.List;
 import java.util.Locale;
 
 import br.com.lucas.valli.fluxodecaixa.Adapter.AdapterDadosEntrada;
-import br.com.lucas.valli.fluxodecaixa.Model.ConversorDeMoeda;
 import br.com.lucas.valli.fluxodecaixa.Model.DadosEntrada;
 import br.com.lucas.valli.fluxodecaixa.databinding.ActivityTelaPrincipalEntradasBinding;
 

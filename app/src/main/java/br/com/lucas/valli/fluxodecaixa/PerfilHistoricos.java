@@ -26,9 +26,11 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import br.com.lucas.valli.fluxodecaixa.Adapter.AdapterHistoricoEntrada;
 import br.com.lucas.valli.fluxodecaixa.Adapter.AdapterHistoricoSaida;
@@ -45,6 +47,8 @@ public class PerfilHistoricos extends AppCompatActivity {
     private List<HistoricoSaida> historicoSaidaList;
     private FirebaseFirestore db;
     private String usuarioID;
+    Locale ptbr = new Locale("pt", "BR");
+    private Double vazio = Double.parseDouble("0.00");
 
     String [] meses = {"janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho",
             "agosto", "setembro", "outubro", "novembro", "dezembro"};
@@ -106,10 +110,13 @@ public class PerfilHistoricos extends AppCompatActivity {
                                 @Override
                                 public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
                                     if (!documentSnapshot.exists()) {
-                                        binding.ValorTotalMovimentacao.setText("0.00");
+                                        String vazioFormatado = NumberFormat.getCurrencyInstance(ptbr).format(vazio);
+                                        binding.ValorTotalMovimentacao.setText(vazioFormatado);
                                     }else {
+                                        Double totalMovimentacaoEntrada = Double.parseDouble(documentSnapshot.getString("ResultadoDaSomaEntrada"));
+                                        String totalMovimentacaoEntradaFormat = NumberFormat.getCurrencyInstance(ptbr).format(totalMovimentacaoEntrada);
+                                        binding.ValorTotalMovimentacao.setText(totalMovimentacaoEntradaFormat);
 
-                                        binding.ValorTotalMovimentacao.setText(documentSnapshot.getString("ResultadoDaSomaEntrada"));
                                     }
                                 }
                             });
@@ -147,10 +154,12 @@ public class PerfilHistoricos extends AppCompatActivity {
                                 @Override
                                 public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
                                     if (!documentSnapshot.exists()) {
-                                        binding.ValorTotalMovimentacao.setText("0.00");
+                                        String vazioFormatado = NumberFormat.getCurrencyInstance(ptbr).format(vazio);
+                                        binding.ValorTotalMovimentacao.setText(vazioFormatado);
                                     }else {
-
-                                        binding.ValorTotalMovimentacao.setText(documentSnapshot.getString("ResultadoDaSomaSaida"));
+                                        Double totalMovimentacaoSaida = Double.parseDouble(documentSnapshot.getString("ResultadoDaSomaSaida"));
+                                        String totalMovimentacaoSaidaFormat = NumberFormat.getCurrencyInstance(ptbr).format(totalMovimentacaoSaida);
+                                        binding.ValorTotalMovimentacao.setText(totalMovimentacaoSaidaFormat);
                                     }
                                 }
                             });

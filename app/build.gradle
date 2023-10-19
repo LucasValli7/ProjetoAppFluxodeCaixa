@@ -57,6 +57,6 @@ dependencies {
 
 
     //implementation 'io.github.vicmikhailau:MaskedEditText:5.0.1' mascara edittext
-
+    //implementation 'com.github.santalu:maskara:1.0.0'
 
 }

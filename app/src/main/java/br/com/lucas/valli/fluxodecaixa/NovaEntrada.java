@@ -1,58 +1,42 @@
 package br.com.lucas.valli.fluxodecaixa;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import static br.com.lucas.valli.fluxodecaixa.Model.ConversorDeMoeda.formatPriceSave;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Toast;
-
-
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.nio.charset.StandardCharsets;
-import java.security.PublicKey;
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
 import java.util.Locale;
 import java.util.Map;
 
-import br.com.lucas.valli.fluxodecaixa.Adapter.AdapterDadosEntrada;
 import br.com.lucas.valli.fluxodecaixa.Model.ConversorDeMoeda;
-import br.com.lucas.valli.fluxodecaixa.Model.DadosEntrada;
 import br.com.lucas.valli.fluxodecaixa.databinding.ActivityNovaEntradaBinding;
 public class NovaEntrada extends AppCompatActivity {
     private ActivityNovaEntradaBinding binding;
+    private ConversorDeMoeda conversorDeMoeda;
     private String usuarioID;
     private Locale ptbr = new Locale("pt", "BR");
     private Date x = new Date();
     private String mes = new SimpleDateFormat("MMMM", new Locale("pt", "BR")).format(x);
     private String ano = new SimpleDateFormat("yyyy", new Locale("pt", "BR")).format(x);
+
 
     @Override
     protected void onStart() {
@@ -66,6 +50,8 @@ public class NovaEntrada extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
         getSupportActionBar().hide();
+
+        binding.editNovoValor.addTextChangedListener(new ConversorDeMoeda(binding.editNovoValor));
 
 
         binding.floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +83,8 @@ public class NovaEntrada extends AppCompatActivity {
     public void EnviarTotalBD(){
 
         Double valor = Double.parseDouble(getIntent().getExtras().getString("valor"));
-        Double valor1 = Double.parseDouble(binding.editNovoValor.getText().toString());
+        String str = formatPriceSave(binding.editNovoValor.getText().toString());
+        Double valor1 = Double.parseDouble(str);
         Double soma = valor + valor1;
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -124,7 +111,8 @@ public class NovaEntrada extends AppCompatActivity {
     public void EnviarDadosListaEntradaBD(){
 
         String DadosEntrada = binding.editNovaEntrada.getText().toString();
-        Double ValorEntrada = Double.parseDouble(binding.editNovoValor.getText().toString());
+        String str = formatPriceSave(binding.editNovoValor.getText().toString());
+        Double ValorEntrada = Double.parseDouble(str);
         String ValorEntradaConvertido = NumberFormat.getCurrencyInstance(ptbr).format(ValorEntrada);
         String dataEntrada = binding.addData.getText().toString();
         FirebaseFirestore db = FirebaseFirestore.getInstance();

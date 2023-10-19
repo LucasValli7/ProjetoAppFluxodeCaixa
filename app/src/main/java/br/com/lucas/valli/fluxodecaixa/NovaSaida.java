@@ -1,5 +1,7 @@
 package br.com.lucas.valli.fluxodecaixa;
 
+import static br.com.lucas.valli.fluxodecaixa.Model.ConversorDeMoeda.formatPriceSave;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,10 +28,12 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import br.com.lucas.valli.fluxodecaixa.Model.ConversorDeMoeda;
 import br.com.lucas.valli.fluxodecaixa.databinding.ActivityNovaSaidaBinding;
 
 public class NovaSaida extends AppCompatActivity {
     private ActivityNovaSaidaBinding binding;
+    private ConversorDeMoeda conversorDeMoeda;
     private String usuarioID;
     private Locale ptbr = new Locale("pt", "BR");
     private Date x = new Date();
@@ -48,6 +52,8 @@ public class NovaSaida extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
         getSupportActionBar().hide();
+
+        binding.editNovoValor.addTextChangedListener(new ConversorDeMoeda(binding.editNovoValor));
 
         binding.floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +82,8 @@ public class NovaSaida extends AppCompatActivity {
     public void EnviarTotalBD(){
 
         Double valor = Double.parseDouble(getIntent().getExtras().getString("valor"));
-        Double valor1 = Double.parseDouble(binding.editNovoValor.getText().toString());
+        String str = formatPriceSave(binding.editNovoValor.getText().toString());
+        Double valor1 = Double.parseDouble(str);
         Double soma = valor + valor1;
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -103,7 +110,8 @@ public class NovaSaida extends AppCompatActivity {
     public void EnviarDadosListaEntradaBD(){
 
         String DadosSaida = binding.editNovaSaida.getText().toString();
-        Double ValorSaida = Double.parseDouble(binding.editNovoValor.getText().toString());
+        String str = formatPriceSave(binding.editNovoValor.getText().toString());
+        Double ValorSaida = Double.parseDouble(str);
         String ValorSaidaConvertido = NumberFormat.getCurrencyInstance(ptbr).format(ValorSaida);
         String dataSaida = binding.addData.getText().toString();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
