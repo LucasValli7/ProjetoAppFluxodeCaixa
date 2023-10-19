@@ -36,10 +36,6 @@
                 android:icon="@drawable/ic_logout"
                 app:showAsAction="never" />
 
-
-
-
-
         </menu>
         </item>
 

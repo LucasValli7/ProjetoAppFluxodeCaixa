@@ -107,7 +107,7 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:text="Total de Entradas"
+        android:text="Total de Entradas: "
         android:textSize="20sp"
         android:layout_marginTop="8dp"
         android:layout_marginStart="90dp"

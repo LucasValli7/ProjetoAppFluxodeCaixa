@@ -62,7 +62,8 @@ public class TelaPrincipalSaidas extends AppCompatActivity {
         binding.tolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = new Intent(TelaPrincipalSaidas.this, TelaPrincipal.class);
+                startActivity(intent);
             }
 
         });

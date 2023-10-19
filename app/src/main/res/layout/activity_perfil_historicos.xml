@@ -74,14 +74,13 @@
         app:layout_constraintTop_toBottomOf="@id/tolbar" />
 
 
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listHistorico"
         android:layout_width="match_parent"
         android:layout_height="600dp"
         android:layout_marginTop="2dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup1" />
 
@@ -89,15 +88,14 @@
         android:id="@+id/TotalMovimentacao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:text="Total:"
-        android:textSize="20sp"
-        android:layout_marginTop="8dp"
         android:layout_marginStart="250dp"
         android:layout_marginBottom="10dp"
+        android:text="Total: "
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/ValorTotalMovimentacao" />
 
     <TextView
         android:id="@+id/ValorTotalMovimentacao"
@@ -110,6 +108,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="10dp"
+        android:layout_marginStart="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
