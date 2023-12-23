@@ -40,8 +40,9 @@ public class AdapterDadosEntrada extends RecyclerView.Adapter<AdapterDadosEntrad
 
     @Override
     public void onBindViewHolder(@NonNull DadosViewHolder holder, int position) {
-        holder.TipoDeEntrada.setText(dadosList.get(position).getTipoDeEntrada());
-        holder.ValorDeEntrada.setText(dadosList.get(position).getValorDeEntrada());
+        holder.dataItemEntrada.setText(dadosList.get(position).getDataDeEntrada());
+        holder.tipoDeEntrada.setText(dadosList.get(position).getTipoDeEntrada());
+        holder.valorDeEntrada.setText(dadosList.get(position).getValorDeEntrada());
 
     }
 
@@ -52,14 +53,17 @@ public class AdapterDadosEntrada extends RecyclerView.Adapter<AdapterDadosEntrad
 
     public class DadosViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView TipoDeEntrada;
-        private TextView ValorDeEntrada;
+        private TextView dataItemEntrada;
+        private TextView tipoDeEntrada;
+        private TextView valorDeEntrada;
+
 
 
         public DadosViewHolder(@NonNull View itemView) {
             super(itemView);
-            TipoDeEntrada = itemView.findViewById(R.id.Item_DadosItem_TipoDeEntrada);
-            ValorDeEntrada = itemView.findViewById(R.id.Item_DadosItem_ValorDeEntrada);
+            dataItemEntrada = itemView.findViewById(R.id.item_valorDataEntrada);
+            tipoDeEntrada = itemView.findViewById(R.id.txt_valorTipoEntrada);
+            valorDeEntrada = itemView.findViewById(R.id.txt_valorEntrada);
         }
     }
 }

@@ -4,7 +4,16 @@ public class DadosEntrada {
 
     private String TipoDeEntrada;
     private String ValorDeEntrada;
+    private String dataDeEntrada;
+    private String id;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getTipoDeEntrada() {
         return TipoDeEntrada;
@@ -20,5 +29,13 @@ public class DadosEntrada {
 
     public void setValorDeEntrada(String valorDeEntrada) {
         ValorDeEntrada = valorDeEntrada;
+    }
+
+    public String getDataDeEntrada() {
+        return dataDeEntrada;
+    }
+
+    public void setDataDeEntrada(String dataDeEntrada) {
+        this.dataDeEntrada = dataDeEntrada;
     }
 }

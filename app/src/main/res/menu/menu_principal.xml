@@ -27,7 +27,7 @@
             <item
                 android:id="@+id/historico"
                 android:title="Histórico"
-                android:icon="@drawable/ic_historico"
+                android:icon="@drawable/ic_historico2"
                 app:showAsAction="never" />
 
             <item

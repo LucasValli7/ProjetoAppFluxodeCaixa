@@ -2,11 +2,11 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="160dp"
     android:layout_marginStart="8dp"
     android:layout_marginEnd="8dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
+    android:layout_marginTop="1dp"
+    android:layout_marginBottom="1dp"
     android:padding="10dp"
     app:cardCornerRadius="5dp"
     android:elevation="5dp"
@@ -15,15 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_delete"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+        android:background="@color/black">
 
 
         <TextView
@@ -32,9 +24,10 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="29/08/2023"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="30sp"
             android:textStyle="bold"
+            android:layout_margin="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -46,7 +39,7 @@
             android:text="Tipo de Saída"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:layout_margin="15dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item_valorDataSaida"/>
@@ -58,11 +51,23 @@
             android:text="Férias"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:layout_margin="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item_valorDataSaida"
             />
+
+        <View
+            android:id="@+id/LinhaDivisoria1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:background="@color/blacl_ligth"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_tipoSaida" />
 
         <TextView
             android:id="@+id/txt_Saida"
@@ -71,10 +76,10 @@
             android:text="Valor de Saída"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:layout_margin="15dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txt_tipoSaida"/>
+            app:layout_constraintTop_toBottomOf="@id/LinhaDivisoria1"/>
 
         <TextView
             android:id="@+id/txt_valorSaida"
@@ -83,10 +88,22 @@
             android:text="R$ 2.000,00"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/red"
             android:layout_margin="15dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txt_valorTipoSaida" />
+            app:layout_constraintTop_toBottomOf="@id/LinhaDivisoria1" />
+
+        <View
+            android:id="@+id/LinhaDivisoria2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:background="@color/blacl_ligth"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_Saida" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

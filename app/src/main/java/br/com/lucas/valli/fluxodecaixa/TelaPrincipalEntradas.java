@@ -3,9 +3,15 @@ package br.com.lucas.valli.fluxodecaixa;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,7 +40,9 @@ import java.util.Locale;
 
 import br.com.lucas.valli.fluxodecaixa.Adapter.AdapterDadosEntrada;
 import br.com.lucas.valli.fluxodecaixa.Model.DadosEntrada;
+import br.com.lucas.valli.fluxodecaixa.Model.DadosSaidaE;
 import br.com.lucas.valli.fluxodecaixa.databinding.ActivityTelaPrincipalEntradasBinding;
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
 public class TelaPrincipalEntradas extends AppCompatActivity {
 
@@ -44,7 +52,7 @@ public class TelaPrincipalEntradas extends AppCompatActivity {
     private FirebaseFirestore db;
     private String usuarioID;
     private Date x = new Date();
-    private String mes = new SimpleDateFormat("MMMM", new Locale("pt", "BR")).format(x);
+    private String mes = new SimpleDateFormat("MM", new Locale("pt", "BR")).format(x);
     private String ano = new SimpleDateFormat("yyyy", new Locale("pt", "BR")).format(x);
 
     Locale ptbr = new Locale("pt", "BR");
@@ -84,7 +92,6 @@ public class TelaPrincipalEntradas extends AppCompatActivity {
         Date x = new Date();
         String mes = new SimpleDateFormat("MMMM", new Locale("pt", "BR")).format(x);
         String ano = new SimpleDateFormat("yyyy", new Locale("pt", "BR")).format(x);
-        binding.txtTeste.setText(mes+ "/" + ano);
 
 
     }
@@ -107,6 +114,100 @@ public class TelaPrincipalEntradas extends AppCompatActivity {
                                 DadosEntrada dadosEntrada = queryDocumentSnapshot.toObject(DadosEntrada.class);
                                 dadosEntradas.add(dadosEntrada);
                                 adapterDados.notifyDataSetChanged();
+
+                                // efeito Swipe
+                                ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+                                    @Override
+                                    public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                                        return false;
+                                    }
+
+                                    @Override
+                                    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                                        final int position = viewHolder.getLayoutPosition();
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(TelaPrincipalEntradas.this);
+                                        builder.setTitle("Atenção");
+                                        builder.setMessage("deseja excluir esse item?");
+                                        builder.setPositiveButton("Salvar", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                DadosEntrada item = dadosEntradas.get(position);
+
+                                                //document reference total Geral
+                                                DocumentReference documentReference = db.collection(usuarioID).document(ano).collection(mes).document("entradas").collection("Total de Entradas")
+                                                        .document("Total");
+
+                                                DocumentReference documentReferenceV = db.collection(usuarioID).document(ano).collection(mes).document("entradas")
+                                                        .collection("nova entrada").document(item.getId());
+
+                                                documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                                                    @Override
+                                                    public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+                                                        documentReferenceV.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                                                            @Override
+                                                            public void onEvent(@Nullable DocumentSnapshot documentSnapshotV, @Nullable FirebaseFirestoreException error) {
+                                                                if (documentSnapshotV.exists()){
+                                                                    Double totalEntrada = Double.parseDouble(documentSnapshot.getString("ResultadoDaSomaEntrada"));
+                                                                    Double totalEntrada3 = Double.parseDouble(documentSnapshotV.getString("ValorDeEntradaDouble"));
+
+                                                                    Double soma = totalEntrada - totalEntrada3;
+                                                                    String cv = String.valueOf(soma);
+
+                                                                    db.collection(usuarioID).document(ano).collection(mes).document("entradas").collection("Total de Entradas")
+                                                                            .document("Total").update("ResultadoDaSomaEntrada",cv);
+
+
+                                                                    db.collection(usuarioID).document(ano).collection(mes).document("entradas")
+                                                                            .collection("nova entrada")
+                                                                            .document(item.getId()).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                @Override
+                                                                                public void onComplete(@NonNull Task<Void> task) {
+                                                                                    if (task.isSuccessful()){
+                                                                                        Toast.makeText(TelaPrincipalEntradas.this, "item excluido com sucesso", Toast.LENGTH_LONG).show();
+                                                                                        dadosEntradas.remove(viewHolder.getAdapterPosition());
+                                                                                        adapterDados.notifyDataSetChanged();
+
+                                                                                    }else {
+
+                                                                                    }
+                                                                                }
+                                                                            });
+                                                                }
+                                                            }
+                                                        });
+                                                    }
+                                                });
+
+                                            }
+                                        });
+                                        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.cancel();
+                                                adapterDados.notifyItemChanged(viewHolder.getAdapterPosition());
+                                            }
+                                        });
+                                        builder.show();
+
+                                    }
+
+                                    public void onChildDraw (Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive){
+
+                                        new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                                                .addSwipeLeftBackgroundColor(ContextCompat.getColor(TelaPrincipalEntradas.this, R.color.red))
+                                                .addSwipeLeftActionIcon(R.drawable.ic_delete)
+                                                .addSwipeLeftLabel("Excluir")
+                                                .setSwipeLeftLabelColor(ContextCompat.getColor(TelaPrincipalEntradas.this, R.color.white))
+                                                .create()
+                                                .decorate();
+
+                                        super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+                                    }
+
+                                };
+                                new ItemTouchHelper(simpleCallback).attachToRecyclerView(binding.ListaTipoEntrada);
+
+
                             }
                         }
                     }

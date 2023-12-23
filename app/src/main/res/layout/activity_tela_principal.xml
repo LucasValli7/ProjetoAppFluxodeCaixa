@@ -7,8 +7,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/drawerLayout"
-    android:background="@drawable/sp_fundo"
+    android:background="@drawable/ic_money_fundo"
     tools:context=".TelaPrincipal">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -18,97 +23,203 @@
         android:id="@+id/include_toolbar"
         layout="@layout/toolbar" />
 
+    <LinearLayout
+        android:id="@+id/csLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="415dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/include_toolbar">
+
+        <TextView
+            android:id="@+id/txt_ResumoCaixa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RESUMO DE CAIXA"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_margin="5dp" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/csLayout3"
+            style="@style/ContainerComponents"
+            android:layout_margin="5dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/ViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="415dp"
+            app:layout_constraintBottom_toBottomOf="@id/csLayout3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tabLayout"
+            tools:ignore="SpeakableTextPresentCheck">
+
+        </androidx.viewpager.widget.ViewPager>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/LinhaDivisoria"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/csLayout3" />
+
     <TextView
-        android:id="@+id/txt_ResumoCaixa"
+        android:id="@+id/txt_ControledeGastos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RESUMO DE CAIXA MENSAL"
+        android:text="CONTROLE DE GASTOS"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/white"
         android:layout_margin="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/include_toolbar" />
+        app:layout_constraintTop_toBottomOf="@id/LinhaDivisoria" />
 
     <View
-        android:id="@+id/container1"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
+        android:id="@+id/container4"
         style="@style/ContainerComponents"
-        app:layout_constraintTop_toBottomOf="@id/txt_ResumoCaixa"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <ImageView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:src="@drawable/ic_add_money"
-        android:layout_marginStart="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/container1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/container1" />
+        app:layout_constraintTop_toBottomOf="@id/txt_ControledeGastos" />
 
     <TextView
-        android:id="@+id/txt_entradas"
+        android:id="@+id/txt_GastosEssenciais"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total de Entradas"
+        android:text="Gastos Essenciais"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        android:textColor="@color/black"
+        android:layout_margin="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/container4" />
+
+    <View
+        android:id="@+id/LinhaDivisoria2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/blacl_ligth"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_GastosEssenciais" />
+
+    <TextView
+        android:id="@+id/txt_porcentagemEssenciais"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="50"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/txt_ValorGastoE"
+        app:layout_constraintStart_toStartOf="@id/container4"
+        app:layout_constraintTop_toTopOf="@+id/txt_ValorDisponivelE" />
+
+    <TextView
+        android:id="@+id/txt_porcentagem1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="%"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/txt_ValorGastoE"
+        app:layout_constraintStart_toEndOf="@id/txt_porcentagemEssenciais"
+        app:layout_constraintTop_toTopOf="@+id/txt_ValorDisponivelE" />
+
+
+
+    <TextView
+        android:id="@+id/txt_porcentagemGastosE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/ValorGastoE"
+        app:layout_constraintStart_toStartOf="@id/container4"
+        app:layout_constraintTop_toBottomOf="@+id/ValorDisponivelE" />
+
+    <TextView
+        android:id="@+id/txt_porcentagemE1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="%"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/ValorGastoE"
+        app:layout_constraintStart_toEndOf="@id/txt_porcentagemGastosE"
+        app:layout_constraintTop_toBottomOf="@+id/ValorDisponivelE" />
+
+    <TextView
+        android:id="@+id/txt_ValorDisponivelE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valor Disponível"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
-        app:layout_constraintEnd_toEndOf="@id/container1"
-        app:layout_constraintTop_toTopOf="@id/container1"/>
+        app:layout_constraintEnd_toEndOf="@id/container4"
+        app:layout_constraintTop_toTopOf="@id/LinhaDivisoria2"/>
 
     <TextView
-        android:id="@+id/txt_valorEntradas"
+        android:id="@+id/ValorDisponivelE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="@color/green"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="2dp"
-        app:layout_constraintEnd_toEndOf="@id/container1"
-        app:layout_constraintTop_toBottomOf="@id/txt_entradas"/>
-
-    <View
-        android:id="@+id/container2"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        style="@style/ContainerComponents"
-        app:layout_constraintTop_toBottomOf="@id/container1"
-        android:layout_marginTop="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <ImageView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:src="@drawable/ic_del_money"
-        android:layout_marginStart="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/container2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/container2" />
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="@id/container4"
+        app:layout_constraintTop_toBottomOf="@id/txt_ValorDisponivelE"/>
 
     <TextView
-        android:id="@+id/txt_saidas"
+        android:id="@+id/txt_ValorGastoE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total de Saídas"
+        android:text="Valor Gasto"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
-        app:layout_constraintEnd_toEndOf="@id/container2"
-        app:layout_constraintTop_toTopOf="@id/container2"/>
+        app:layout_constraintEnd_toEndOf="@id/container4"
+        app:layout_constraintTop_toBottomOf="@id/ValorDisponivelE"/>
 
     <TextView
-        android:id="@+id/txt_valorSaidas"
+        android:id="@+id/ValorGastoE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
@@ -117,56 +228,295 @@
         android:textColor="@color/red"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txt_saidas"/>
+        app:layout_constraintEnd_toEndOf="@id/container4"
+        app:layout_constraintTop_toBottomOf="@id/txt_ValorGastoE"/>
 
     <View
-        android:id="@+id/container3"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
+        android:id="@+id/container5"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         style="@style/ContainerComponents"
-        app:layout_constraintTop_toBottomOf="@id/container2"
-        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/container4"
+        android:layout_margin="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <ImageView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:src="@drawable/ic_money_liquido"
-        android:layout_marginStart="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/container3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/container3" />
-
     <TextView
-        android:id="@+id/txt_FimDoMes"
+        android:id="@+id/txt_PagamentoDividas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fluxo Líquido"
+        android:text="Pagamento de Dívidas"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        android:textColor="@color/black"
+        android:layout_margin="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/container5" />
+
+    <View
+        android:id="@+id/LinhaDivisoria3"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/blacl_ligth"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_PagamentoDividas" />
+
+    <TextView
+        android:id="@+id/txt_porcentagemPagamentoDeDividas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_marginStart="12dp"
+        android:text="30"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/txt_ValorGastoP"
+        app:layout_constraintStart_toStartOf="@id/container5"
+        app:layout_constraintTop_toTopOf="@+id/txt_ValorDisponivelP" />
+
+    <TextView
+        android:id="@+id/txt_porcentagem2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="%"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/txt_ValorGastoP"
+        app:layout_constraintStart_toEndOf="@id/txt_porcentagemPagamentoDeDividas"
+        app:layout_constraintTop_toTopOf="@+id/txt_ValorDisponivelP" />
+
+    <TextView
+        android:id="@+id/txt_porcentagemGastosP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_marginStart="12dp"
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/ValorGastoP"
+        app:layout_constraintStart_toStartOf="@id/container5"
+        app:layout_constraintTop_toBottomOf="@+id/ValorDisponivelP" />
+
+    <TextView
+        android:id="@+id/txt_porcentagemP2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="%"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/ValorGastoP"
+        app:layout_constraintStart_toEndOf="@id/txt_porcentagemGastosP"
+        app:layout_constraintTop_toBottomOf="@+id/ValorDisponivelP" />
+
+
+    <TextView
+        android:id="@+id/txt_ValorDisponivelP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valor Disponível"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/container3"/>
+        app:layout_constraintEnd_toEndOf="@id/container5"
+        app:layout_constraintTop_toTopOf="@id/LinhaDivisoria3"/>
 
     <TextView
-        android:id="@+id/txt_ValorFimDoMes"
+        android:id="@+id/ValorDisponivelP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
-        android:layout_marginTop="15dp"
+        android:textColor="@color/green"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txt_FimDoMes"/>
+        app:layout_constraintEnd_toEndOf="@id/container5"
+        app:layout_constraintTop_toBottomOf="@id/txt_ValorDisponivelP"/>
 
+    <TextView
+        android:id="@+id/txt_ValorGastoP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valor Gasto"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="@id/container5"
+        app:layout_constraintTop_toBottomOf="@id/ValorDisponivelP"/>
+
+    <TextView
+        android:id="@+id/ValorGastoP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/red"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="@id/container5"
+        app:layout_constraintTop_toBottomOf="@id/txt_ValorGastoP"/>
+
+    <View
+        android:id="@+id/container6"
+        style="@style/ContainerComponents"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/container5"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/texto_DesejosPessoais"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Desejos Pessoais"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        android:textColor="@color/black"
+        android:layout_margin="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/container6" />
+
+    <View
+        android:id="@+id/LinhaDivisoria4"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/blacl_ligth"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/texto_DesejosPessoais" />
+
+    <TextView
+        android:id="@+id/txt_porcentagemDesejosPessoais"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="20"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/ValorDisponivelD"
+        app:layout_constraintStart_toStartOf="@id/container6"
+        app:layout_constraintTop_toTopOf="@+id/txt_ValorDisponivelD" />
+
+    <TextView
+        android:id="@+id/txt_porcentagem3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="%"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/ValorDisponivelD"
+        app:layout_constraintStart_toEndOf="@id/txt_porcentagemDesejosPessoais"
+        app:layout_constraintTop_toTopOf="@+id/txt_ValorDisponivelD" />
+
+    <TextView
+        android:id="@+id/txt_porcentagemGastosD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@+id/txt_ValorGastoD"
+        app:layout_constraintStart_toStartOf="@id/container6"
+        app:layout_constraintBottom_toBottomOf="@+id/ValorGastoD" />
+
+    <TextView
+        android:id="@+id/txt_porcentagemD3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="%"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@+id/txt_ValorGastoD"
+        app:layout_constraintStart_toEndOf="@id/txt_porcentagemGastosD"
+        app:layout_constraintBottom_toBottomOf="@+id/ValorGastoD" />
+
+    <TextView
+        android:id="@+id/txt_ValorDisponivelD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valor Disponível"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="@id/container6"
+        app:layout_constraintTop_toTopOf="@id/LinhaDivisoria4"/>
+
+
+    <TextView
+        android:id="@+id/ValorDisponivelD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/green"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="@id/container6"
+        app:layout_constraintTop_toBottomOf="@id/txt_ValorDisponivelD"/>
+
+    <TextView
+        android:id="@+id/txt_ValorGastoD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valor Gasto"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="@id/container6"
+        app:layout_constraintTop_toBottomOf="@id/ValorDisponivelD"/>
+
+    <TextView
+        android:id="@+id/ValorGastoD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/red"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="@id/container6"
+        app:layout_constraintTop_toBottomOf="@id/txt_ValorGastoD"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
     <RelativeLayout
         android:layout_width="280dp"

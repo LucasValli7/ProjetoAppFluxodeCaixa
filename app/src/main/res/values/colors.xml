@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blacl_ligth">#5c5c5c</color>
     <color name="red">#E50000</color>
+    <color name="green">#069119</color>
+    <color name="blue">#003FC7</color>
 </resources>

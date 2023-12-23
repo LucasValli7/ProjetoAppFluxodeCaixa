@@ -8,12 +8,17 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.common.base.MoreObjects;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -25,18 +30,19 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.UUID;
 
 import br.com.lucas.valli.fluxodecaixa.Model.ConversorDeMoeda;
 import br.com.lucas.valli.fluxodecaixa.databinding.ActivityNovaEntradaBinding;
 public class NovaEntrada extends AppCompatActivity {
     private ActivityNovaEntradaBinding binding;
-    private ConversorDeMoeda conversorDeMoeda;
     private String usuarioID;
     private Locale ptbr = new Locale("pt", "BR");
     private Date x = new Date();
-    private String mes = new SimpleDateFormat("MMMM", new Locale("pt", "BR")).format(x);
-    private String ano = new SimpleDateFormat("yyyy", new Locale("pt", "BR")).format(x);
 
+    String [] formaPagamento = {"Cheque", "Dinheiro", "Cartão de Crédito"};
+    AutoCompleteTextView autoCompleteTextView;
+    ArrayAdapter<String> adapterItem;
 
     @Override
     protected void onStart() {
@@ -50,37 +56,76 @@ public class NovaEntrada extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
         getSupportActionBar().hide();
+        FormaPagamento();
+
 
         binding.editNovoValor.addTextChangedListener(new ConversorDeMoeda(binding.editNovoValor));
-
-
         binding.floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NovaEntrada.this, TelaPrincipalEntradas.class);
-                Toast.makeText(NovaEntrada.this,"Salvo com Sucesso",Toast.LENGTH_SHORT).show();
-                finish();
-                EnviarDadosListaEntradaBD();
-                EnviarTotalBD();
 
+               String novaEntrada = binding.editNovaEntrada.getText().toString();
+               String novoValor = binding.editNovoValor.getText().toString();
+               if (novaEntrada.isEmpty() || novoValor.isEmpty()){
+                   Snackbar snackbar = Snackbar.make(v,"Preencha todos os campos",Snackbar.LENGTH_INDEFINITE)
+                           .setAction("OK", new View.OnClickListener() {
+                               @Override
+                               public void onClick(View v) {
+
+                               }
+                           });
+                   snackbar.show();
+               }else {
+                   Intent intent = new Intent(NovaEntrada.this, TelaPrincipalEntradas.class);
+                   Toast.makeText(NovaEntrada.this,"Salvo com Sucesso",Toast.LENGTH_SHORT).show();
+                   finish();
+                   EnviarDadosListaEntradaBD();
+                   EnviarTotalBD();
+               }
             }
         });
         binding.tolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { finish(); }
         });
-        binding.addData.setOnClickListener(new View.OnClickListener() {
+        binding.li.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AbrirCalendario(v);
+                Snackbar snackbar = Snackbar.make(v,"Não é permitido adicionar movimentação com datas retroativas",Snackbar.LENGTH_INDEFINITE)
+                        .setAction("OK", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                            }
+                        });
+                snackbar.show();
             }
         });
 
 
     }
 
+    public void FormaPagamento(){
+
+        autoCompleteTextView = findViewById(R.id.auto_complete_text_form);
+        adapterItem = new ArrayAdapter<String>(this,R.layout.nova_entrada_item, formaPagamento);
+        autoCompleteTextView.setAdapter(adapterItem);
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String Item = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(NovaEntrada.this, Item+ " selecionado", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+    }
 
     public void EnviarTotalBD(){
+
+        String mes = binding.addData2.getText().toString();
+        String ano = binding.addData3.getText().toString();
 
         Double valor = Double.parseDouble(getIntent().getExtras().getString("valor"));
         String str = formatPriceSave(binding.editNovoValor.getText().toString());
@@ -109,23 +154,36 @@ public class NovaEntrada extends AppCompatActivity {
 
     }
     public void EnviarDadosListaEntradaBD(){
+        String dia = binding.addData.getText().toString();
+        String mes = binding.addData2.getText().toString();
+        String ano = binding.addData3.getText().toString();
+
 
         String DadosEntrada = binding.editNovaEntrada.getText().toString();
+
         String str = formatPriceSave(binding.editNovoValor.getText().toString());
         Double ValorEntrada = Double.parseDouble(str);
         String ValorEntradaConvertido = NumberFormat.getCurrencyInstance(ptbr).format(ValorEntrada);
-        String dataEntrada = binding.addData.getText().toString();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        String ValorEntradaDouble = String.valueOf(ValorEntrada);
+        String dataEntrada = dia + mes + ano;
+        String formaPagamento = binding.autoCompleteTextForm.getText().toString();
+        String id = UUID.randomUUID().toString();
 
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> entradas = new HashMap<>();
-        entradas.put("TipoDeEntrada", DadosEntrada);
-        entradas.put("ValorDeEntrada", ValorEntradaConvertido);
         entradas.put("dataDeEntrada", dataEntrada);
+        entradas.put("ValorDeEntradaDouble", ValorEntradaDouble);
+        entradas.put("ValorDeEntrada", ValorEntradaConvertido);
+        entradas.put("TipoDeEntrada", DadosEntrada);
+        entradas.put("id", id);
+
+        entradas.put("formPagamento", formaPagamento);
         usuarioID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         DocumentReference documentReference = db.collection(usuarioID).document(ano).collection(mes)
                 .document("entradas")
-                .collection("nova entrada").document(DadosEntrada);
+                .collection("nova entrada").document(id);
         documentReference.set(entradas).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -158,8 +216,10 @@ public class NovaEntrada extends AppCompatActivity {
                     date = dpd.parse(dpd.format(calendar.getTime()));
                     String dayS = new SimpleDateFormat("dd", new Locale("pt", "BR")).format(date);
                     String monthS = new SimpleDateFormat("MM", new Locale("pt", "BR")).format(date);
-                    String yearS = new SimpleDateFormat("yyyy", new Locale("pt", "BR")).format(date);
-                    binding.addData.setText((dayS + "/" + monthS + "/" + yearS));
+                    String yearS = new SimpleDateFormat("YYYY", new Locale("pt", "BR")).format(date);
+                    binding.addData.setText(dayS + "/");
+                    binding.addData2.setText(monthS+ "/");
+                    binding.addData3.setText(yearS);
                 } catch (ParseException e) {
 
                 }
@@ -167,12 +227,17 @@ public class NovaEntrada extends AppCompatActivity {
         }, ano, mes, dia);
         dpd.show();
 
+
+
     }
+
     public void PassarDataAutomatica(){
         String dia = new SimpleDateFormat("dd", new Locale("pt", "BR")).format(x);
         String mes = new SimpleDateFormat("MM", new Locale("pt", "BR")).format(x);
         String ano = new SimpleDateFormat("yyyy", new Locale("pt", "BR")).format(x);
-        binding.addData.setText(dia+ "/" + mes+ "/" + ano);
+        binding.addData.setText(dia + "/");
+        binding.addData2.setText(mes+ "/");
+        binding.addData3.setText(ano);
     }
 
 }

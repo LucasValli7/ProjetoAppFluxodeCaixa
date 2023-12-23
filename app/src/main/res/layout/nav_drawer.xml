@@ -15,9 +15,9 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/common_google_signin_btn_icon_dark"/>
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/usuario"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -42,7 +42,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
-        android:orientation="vertical">
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30sp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_home3"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -50,8 +56,7 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             android:padding="8dp"
-            android:text=" Inicio"
-            android:drawableLeft="@drawable/ic_home"/>
+            android:text="Inicio" />
 
     </LinearLayout>
 
@@ -61,16 +66,23 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
-        android:orientation="vertical">
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30sp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_money_mais"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="20sp"
             android:padding="8dp"
-            android:text=" Nova Entrada"
-            android:drawableLeft="@drawable/ic_add_money"/>
+            android:text="Entradas"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+
 
     </LinearLayout>
 
@@ -80,7 +92,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="12dp"
-            android:orientation="vertical">
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30sp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_money_menos"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -88,10 +106,56 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             android:padding="8dp"
-            android:text=" Nova Saída"
-            android:drawableLeft="@drawable/ic_del_money"/>
+            android:text="Saídas" />
 
         </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearContasApagar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30sp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_contas_a_pagar"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:padding="8dp"
+            android:text="Contas à Pagar" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/LinearContasAreceber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30sp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_contas_a_receber"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:padding="8dp"
+            android:text="Contas à Receber" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/LinearHistorico"
@@ -99,7 +163,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
-        android:orientation="vertical">
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30sp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_historico_4"/>
 
         <TextView
             android:id="@+id/historico"
@@ -108,8 +178,8 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             android:padding="8dp"
-            android:text=" Histórico"
-            android:drawableLeft="@drawable/ic_historico"/>
+            android:text="Histórico"
+            />
 
     </LinearLayout>
 
@@ -119,7 +189,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="12dp"
-                android:orientation="vertical">
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30sp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_sobre3"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -127,15 +203,14 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             android:padding="8dp"
-            android:text=" Sobre"
-            android:drawableLeft="@drawable/ic_info"/>
+            android:text="Sobre" />
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="12dp"
+        android:layout_margin="12dp"
         android:background="@color/black"/>
 
     <LinearLayout
@@ -144,7 +219,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
-        android:orientation="vertical">
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30sp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_logout"/>
 
         <TextView
             android:id="@+id/logout"
@@ -153,8 +234,7 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             android:padding="8dp"
-            android:text=" Sair da Sessão"
-            android:drawableLeft="@drawable/ic_logout"/>
+            android:text="Sair da Sessão" />
 
     </LinearLayout>
 

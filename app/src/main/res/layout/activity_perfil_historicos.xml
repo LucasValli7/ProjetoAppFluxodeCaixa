@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fillViewport="true">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PerfilHistoricos">
@@ -14,10 +19,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black"
-        app:title="Histórico"
-        app:titleTextColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_icon_back"
-        tools:ignore="MissingConstraints" />
+        app:title="Histórico"
+        app:titleTextColor="@color/white" />
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -36,8 +43,7 @@
             android:layout_height="wrap_content"
             android:inputType="none"
             android:textStyle="bold"
-            android:textSize="20sp"
-            android:text="janeiro"/>
+            android:textSize="20sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -58,8 +64,28 @@
             android:layout_height="wrap_content"
             android:inputType="none"
             android:textStyle="bold"
+            android:textSize="20sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout4"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:hint="Categoria"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayout3">
+
+        <AutoCompleteTextView
+            android:id="@+id/auto_complete_text_categoria"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:inputType="none"
             android:textSize="20sp"
-            android:text="2023"/>
+            android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
@@ -77,12 +103,24 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listHistorico"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/LinhaDivisoria1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup1" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup1"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <View
+        android:id="@+id/LinhaDivisoria1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="5dp"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/TotalMovimentacao" />
 
     <TextView
         android:id="@+id/TotalMovimentacao"
@@ -119,7 +157,7 @@
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textInputLayout2">
+        app:layout_constraintTop_toBottomOf="@id/textInputLayout4">
 
         <RadioButton
             android:id="@+id/checkEntrada"
@@ -147,3 +185,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

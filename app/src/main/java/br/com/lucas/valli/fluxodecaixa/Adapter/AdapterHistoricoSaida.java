@@ -40,24 +40,24 @@ public class AdapterHistoricoSaida extends RecyclerView.Adapter<AdapterHistorico
 
     @Override
     public void onBindViewHolder(@NonNull HistoricoSaidasViewHolder holder, int position) {
-        holder.DataItemSaida.setText(historicoSaidaList.get(position).getDataDeSaida());
-        holder.TipoItem.setText(historicoSaidaList.get(position).getTipoDeSaida());
-        holder.ValorItem.setText(historicoSaidaList.get(position).getValorDeSaida());
+        holder.dataItemSaida.setText(historicoSaidaList.get(position).getDataDeSaida());
+        holder.tipoDeSaida.setText(historicoSaidaList.get(position).getTipoDeSaida());
+        holder.valorSaida.setText(historicoSaidaList.get(position).getValorDeSaida());
 
     }
 
     public class HistoricoSaidasViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView DataItemSaida;
-        private TextView TipoItem;
-        private TextView ValorItem;
+        private TextView dataItemSaida;
+        private TextView tipoDeSaida;
+        private TextView valorSaida;
 
         public HistoricoSaidasViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            DataItemSaida = itemView.findViewById(R.id.item_valorDataSaida);
-            TipoItem = itemView.findViewById(R.id.txt_valorTipoSaida);
-            ValorItem = itemView.findViewById(R.id.txt_valorSaida);
+            dataItemSaida = itemView.findViewById(R.id.item_valorDataSaida);
+            tipoDeSaida = itemView.findViewById(R.id.txt_valorTipoSaida);
+            valorSaida = itemView.findViewById(R.id.txt_valorSaida);
         }
     }
 
